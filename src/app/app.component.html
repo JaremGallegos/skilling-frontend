@@ -1,10 +1,18 @@
-<main class="main">
-  <a [routerLink]="['/']">
-    <header class="brand-home">
-      <img class="brand-image" src="assets/logo.svg" alt="logo" />
-    </header>
-  </a>
-  <section class="content">
-    <router-outlet></router-outlet>
-  </section>
-</main>
+<!-- Se mostrará el Login si y solo si la página es login -->
+<ng-container *ngIf="isLoginPage; else isErrorPage">
+  <router-outlet></router-outlet>
+</ng-container>
+
+<!-- Se desea mostrar el Dashboard si y solo si la ágina es diferente de un Login -->
+<ng-template #mainLayout>
+  <ng-container *ngIf="isDashboardPage; else isErrorPage">
+
+  </ng-container>
+</ng-template>
+<!-- Error de Página no encontrada -->
+<ng-template #isErrorPage>
+  <div class="error-page">
+    <h1>Error 404</h1>
+    <p>Página no encontrada.</p>
+  </div>
+</ng-template>
