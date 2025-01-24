@@ -1,1 +1,28 @@
-<p>admin works!</p>
+<div class="p-4 flex gap-4 flex-col md:flex-row">
+  <!-- Izquierda -->
+  <div class="w-full lg:w-2/3 flex flex-col gap-8">
+    <div class="flex gap-4 justify-between flex-wrap">
+      <app-user-card [subTitle]="'Estudiantes'" [colorOdd]="'var(--skillingYellow)'" [colorEven]="'var(--skillingSky)'" [data]="'999'" [isOdd]="true" [date]="'Unknown'" />
+      <app-user-card [subTitle]="'Profesores'" [colorOdd]="'var(--skillingYellow)'" [colorEven]="'var(--skillingSky)'" [data]="'999'" [isOdd]="false" [date]="'Unknown'" />
+      <app-user-card [subTitle]="'Cursos'" [colorOdd]="'var(--skillingYellow)'" [colorEven]="'var(--skillingSky)'" [data]="'999'" [isOdd]="true" [date]="'Unknown'"/>
+      <app-user-card [subTitle]="'Asesores'" [colorOdd]="'var(--skillingYellow)'" [colorEven]="'var(--skillingSky)'" [data]="'999'" [isOdd]="false" [date]="'Unknown'" />
+    </div>
+    <!-- Middle Charts -->
+    <div class="flex gap-4 flex-col lg:flex-row">
+      <!-- Count Chart -->
+      <div class="w-full lg:w-1/3 h-[450px]">
+        <app-count-chart [nombre]="'Estudiantes'" />
+      </div>
+      <!-- Asistencia Chart -->
+      <div class="w-full lg:w-2/3 h-[450px]">
+        <app-attendance-chart [nombre]="'Asistencias'"/>
+      </div>
+    </div>
+    <!-- Botton Charts-->
+    <div class="w-full h-[600px]">
+      <app-finance-chart [nombre]="'Finanzas'" />
+    </div>
+  </div>
+  <!-- Derecha -->
+  <div class="w-full lg:w-1/3">r</div>
+</div>

@@ -1,0 +1,29 @@
+<!-- Quitar los labels que aparecen al hacer hover dentro del Chart -->
+<div class="bg-white rounded-xl w-full h-full p-4">
+  <!-- Título -->
+  <div class="flex justify-between items-center">
+    <h1 class="text-lg font-semibold">{{ nombre }}</h1>
+    <i class="pi pi-ellipsis-h"></i>
+  </div>
+  <!-- Chart -->
+  <div class="relative w-full h-[75%] mt-2 flex items-center justify-center">
+    <p-chart type="doughnut" [data]="data" [options]="options" [responsive]="'true'" width="17rem" height="17rem"/>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      <span class="pi pi-mars text-[var(--skillingBoy)]" style="font-size: 2.5rem"></span>
+      <span class="pi pi-venus text-[var(--skillingGirl)]" style="font-size: 2.5rem"></span>
+    </div>
+  </div>
+  <!-- Botton -->
+  <div class="flex justify-center gap-16">
+    <div class="flex flex-col gap-1">
+      <div class="w-5 h-5 bg-[var(--skillingBoy)] rounded-full"></div>
+      <h1 class="font-bold">{{ total }}</h1>
+      <h2 class="text-xs text-gray-300">{{ sex }} ({{ porcentaje }}%)</h2>
+    </div>
+    <div class="flex flex-col gap-1">
+      <div class="w-5 h-5 bg-[var(--skillingGirl)] rounded-full"></div>
+      <h1 class="font-bold">{{ total }}</h1>
+      <h2 class="text-xs text-gray-300">{{ sex }} ({{ porcentaje }}%)</h2>
+    </div>
+  </div>
+</div>

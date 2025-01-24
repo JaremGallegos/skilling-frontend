@@ -1,0 +1,10 @@
+<p-card
+  [styleClass]="'!rounded-2xl !p-0 flex-1 min-w-[130px] !w-60 !mr-0'"
+  [ngClass]="{'!bg-[var(--skillingSky)]': isOdd, '!bg-[var(--skillingYellow)]': !isOdd}">
+  <div class="flex justify-between items-center">
+    <span class="text-[10px] bg-white px-2 py-1 rounded-full text-green-600">{{ date }}</span> <!-- Generar Script de Fecha -->
+    <i class="pi pi-ellipsis-h text-black"></i>
+  </div>
+  <h1 class="text-2xl font-semibold my-4">{{ data }}</h1>
+  <h2 class="capitalize text-sm font-medium text-gray-500">{{ subTitle }}</h2>
+</p-card>

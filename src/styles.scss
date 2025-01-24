@@ -1,3 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @forward "tailwindcss";
 @forward "primeicons/primeicons.css";
+
+:root {
+  --skillingSky: #C3EBFA;
+  --skillingSkyLight: #EDF9FD;
+  --skillingPurple: #CFCEFF;
+  --skillingPurpleLight: #F1F0FF;
+  --skillingYellow: #FAE27C;
+  --skillingYellowLight: #FEFCE8;
+  --skillingBoy: #4BC0C0;
+  --skillingGirl: #FF6384;
+}

@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { MenuComponent } from '../core/menu/menu.component';
 import { NavbarComponent } from "../core/navbar/navbar.component";
+import { ImageModule } from 'primeng/image'
 
 @Component({
   standalone: true,
@@ -11,7 +12,8 @@ import { NavbarComponent } from "../core/navbar/navbar.component";
     RouterModule,
     ButtonModule,
     MenuComponent,
-    NavbarComponent
+    NavbarComponent,
+    ImageModule
   ],
   template: `<router-outlet></router-outlet>`,
   templateUrl: './features.component.html',
