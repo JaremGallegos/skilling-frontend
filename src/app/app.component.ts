@@ -7,8 +7,8 @@ import { NgIf } from '@angular/common';
   selector: 'app-root',
   imports: [
     RouterModule,
-    NgIf
-],
+    NgIf,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -1,1 +1,17 @@
-<p>event-calendar-component works!</p>
+<div class="bg-white p-4 rounded-md">
+  <!-- Falta Integrar un Calendario -->
+  <p-datepicker class="max-w-full" [(ngModel)]="date" [inline]="true" [showWeek]="true" />
+  <div class="flex items-center justify-between">
+    <h1 class="text-xl font-semibold my-4">Eventos</h1>
+    <i class="pi pi-ellipsis-h"></i>
+  </div>
+  <div class="flex flex-col gap-4">
+    <div class="p-5 rounded-md border-2 border-gray-100 border-t-4" *ngFor="let event of events">
+      <div class="flex items-center justify-between">
+        <h1 class="font-semibold text-gray-600">{{ event.title }}</h1>
+        <span class="text-gray-300 text-xs">{{ event.time }}</span>
+      </div>
+      <p class="mt-2 text-gray-400 text-sm">{{event.description}}</p>
+    </div>
+  </div>
+</div>

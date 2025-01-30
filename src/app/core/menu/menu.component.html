@@ -1,9 +1,11 @@
 <div *ngFor="let menu of menuItems" class="mt-4 text-sm">
   <div class="flex flex-col gap-2">
     <span class="hidden lg:block text-gray-400 font-light my-4">{{ menu.title }}</span>
-    <a *ngFor="let item of menu.items" [href]="item.url" class="flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2">
-      <i [class]="'pi ' + item.icon"></i>
-      <span class="hidden lg:block">{{ item.label }}</span>
-    </a>
+    <ng-container *ngFor="let item of menu.items">
+      <a *ngIf="item.visible" [href]="item.url" class="flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:var(--skillingSkyLight)">
+        <i [class]="'pi ' + item.icon"></i>
+        <span class="hidden lg:block">{{ item.label }}</span>
+      </a>
+    </ng-container>
   </div>
 </div>
