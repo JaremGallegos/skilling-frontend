@@ -3,9 +3,14 @@ import { EventCalendarComponentComponent } from "../../core/components/event-cal
 import { AnnouncementsComponent } from "../../core/components/announcements/announcements.component";
 import { BigCalendarComponent } from "../../core/components/big-calendar/big-calendar.component";
 
+
 @Component({
   selector: 'app-estudiante',
-  imports: [EventCalendarComponentComponent, AnnouncementsComponent, BigCalendarComponent],
+  imports: [
+    EventCalendarComponentComponent,
+    AnnouncementsComponent,
+    BigCalendarComponent
+],
   templateUrl: './estudiante.component.html',
   styleUrl: './estudiante.component.scss'
 })

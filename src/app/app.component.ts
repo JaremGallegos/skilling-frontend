@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-schedule';
 import { RouterModule, Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-root',
-  imports: [
+  imports: [ScheduleModule, RecurrenceEditorModule,
     RouterModule,
     NgIf,
   ],
