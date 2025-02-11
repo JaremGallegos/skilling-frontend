@@ -1,0 +1,26 @@
+<div class="card shadow rounded">
+  <!-- Cabecera de la Carta -->
+  <div class="card-header flex flex-row items-center justify-between space-y-0 p-4 border-b">
+    <h2 class="card-title text-xl font-semibold">Sus recursos</h2>
+  </div>
+  <!-- Contenido de la Carta -->
+  <div class="card-content space-y-4 p-4">
+    <div *ngFor="let resource of resources" class="flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded bg[var(--skillingOrangeBrand)]">
+          <i class="fa-solid fa-file h-5 w-5 text-[var(--skillingBlueGeneral)]"></i>
+        </div>
+        <div>
+          <p class="text-sm font-medium">{{ resource.name }}</p>
+          <p class="text-xs text-muted-foreground">{{ resource.size }}</p>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-icon h-8 w-8">
+        <i class="fa-solid fa-download h-4 w-4"></i>
+      </button>
+    </div>
+    <button class="btn btn-link w-full text-[var(--skillingDarkOrange)]">
+      ver más
+    </button>
+  </div>
+</div>

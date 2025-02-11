@@ -2,7 +2,10 @@
   <div class="flex flex-col gap-2">
     <span class="hidden lg:block text-gray-400 font-light my-4">{{ menu.title }}</span>
     <ng-container *ngFor="let item of menu.items">
-      <a *ngIf="item.visible" [href]="item.url" class="flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:var(--skillingSkyLight)">
+      <a *ngIf="item.visible" [href]="item.url"
+          class="flex items-center gap-3 rounded-lg px-3 py-2
+                text-[var(--skillingBlackGray)] transition-colors
+                hover:text-[var(--skillingWhite)] hover:bg-[var(--skillingOrangeBrand)]">
         <i [class]="'pi ' + item.icon"></i>
         <span class="hidden lg:block">{{ item.label }}</span>
       </a>

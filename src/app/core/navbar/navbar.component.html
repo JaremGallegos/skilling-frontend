@@ -1,22 +1,28 @@
-<div class="flex items-center justify-between p-4">
-  <!-- Barra de Búsqueda -->
-  <p-iconfield>
-    <p-inputicon styleClass="pi pi-search" />
-    <input type="text" pInputText placeholder="Buscar..." class="text-black hidden md:flex items-center gap-2 tex-xs rounded-full ring-[1.5px] ring-gray-300 ps-9 pr-1 w-[200px] p-2 bg-transparent outline-none" />
-  </p-iconfield>
-  <!-- Iconos y usuario -->
-  <div class="flex items-center gap-6 justify-end w-full">
-    <div class="bg-white rounded-full w-7 h-7 flex items-center justify-center cursor-pointer">
-      <i class="pi pi-envelope text-black" style="font-size: 1rem;"></i>
+<div class="flex items-center justify-between p-4 border-b border-[var(--skillingGrayDarkGeneral)]">
+
+    <!-- Barra de Búsqueda -->
+    <p-iconfield>
+      <p-inputicon styleClass="pi pi-search" />
+      <p-autocomplete
+        [(ngModel)]="value"
+        [dropdown]="true"
+        [suggestions]="items"
+        (completeMethod)="search($event)" />
+    </p-iconfield>
+
+    <!-- Iconos y usuario -->
+    <div class="flex items-center gap-6 justify-end w-full">
+      <div class="bg-white rounded-full w-7 h-7 flex items-center justify-center cursor-pointer">
+        <i class="pi pi-envelope text-black" style="font-size: 1rem;"></i>
+      </div>
+      <div class="bg-white rounded-full w-7 h-7 flex items-center justify-center cursor-pointer relative">
+        <i class="pi pi-megaphone text-black" style="font-size: 1rem;"></i>
+        <div class="absolute -top-3 -right-3 w-5 h-5 flex items-center justify-center bg-red-500 text-white rounded-full text-xs">1</div>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-sm leading-3 font-medium text-black">Jarem Gallegos</span>
+        <span class="text-[10px] text-gray-500 text-right">Admin</span>
+      </div>
+      <p-image src="https://yt3.googleusercontent.com/m9yFCxSOWWNoKQRQ-pPiLucMtfuDGDqEXFwFDnqrmPT3EIrggvbn8Ch1U1ilsPtqD24TPJHN=s160-c-k-c0x00ffffff-no-rj" width="36" height="36" class="rounded-full" />
     </div>
-    <div class="bg-white rounded-full w-7 h-7 flex items-center justify-center cursor-pointer relative">
-      <i class="pi pi-megaphone text-black" style="font-size: 1rem;"></i>
-      <div class="absolute -top-3 -right-3 w-5 h-5 flex items-center justify-center bg-red-500 text-white rounded-full text-xs">1</div>
-    </div>
-    <div class="flex flex-col">
-      <span class="text-sm leading-3 font-medium text-black">Jarem Gallegos</span>
-      <span class="text-[10px] text-gray-500 text-right">Admin</span>
-    </div>
-    <p-image src="https://yt3.googleusercontent.com/m9yFCxSOWWNoKQRQ-pPiLucMtfuDGDqEXFwFDnqrmPT3EIrggvbn8Ch1U1ilsPtqD24TPJHN=s160-c-k-c0x00ffffff-no-rj" width="36" height="36" class="rounded-full" />
-  </div>
 </div>

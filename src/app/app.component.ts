@@ -17,6 +17,7 @@ import { NgIf } from '@angular/common';
 export class AppComponent {
   isLoginPage: boolean = false;
   isDashboardPage: boolean = false;
+  title: String = "Skilling";
 
   constructor(private router: Router) {
     this.router.events.subscribe(() => {

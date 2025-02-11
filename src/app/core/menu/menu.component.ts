@@ -22,7 +22,7 @@ export class MenuComponent implements OnInit {
       {
         title: "MENU",
         items: [
-          { label: "Inicio", icon: PrimeIcons.HOME, url: "/", allowRoles: ["admin", "profesor", "estudiante"] },
+          { label: "Inicio", icon: PrimeIcons.HOME, url: "/dashboard", allowRoles: ["admin", "profesor", "estudiante"] },
           { label: "Profesores", icon: PrimeIcons.BRIEFCASE, url: "/profesor", allowRoles: ["admin", "profesor"] },
           { label: "Estudiantes", icon: PrimeIcons.BOOK, url: "/estudiante", allowRoles: ["admin", "profesor"] },
           { label: "Asesores", icon: PrimeIcons.GRADUATION_CAP, url: "/asesores", allowRoles: ["admin"] },

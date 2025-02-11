@@ -1,0 +1,28 @@
+<div class="p-4">
+  <!-- Cabecera (Header) -->
+  <div class="mb-2">
+    <h1 class="text-3xl font-semibold">Hola Jarem 👋</h1>
+    <p class="text-muted-foreground">¡Aprendamos algo nuevo hoy!</p>
+  </div>
+
+  <!-- Zona de Tarjetas -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 w-full">
+    <!-- Carta de Cursos (1 columna) -->
+    <div class="md:col-span-1">
+      <app-courses-card></app-courses-card>
+    </div>
+    <!-- Carta de Recursos (2 columnas) -->
+    <div class="md:col-span-2">
+      <app-resources-card></app-resources-card>
+    </div>
+    <!-- Calendario / Datepicker (1 columna) -->
+    <div class="md:col-span-1">
+      <p-datepicker
+        class="w-full"
+        [(ngModel)]="date"
+        [inline]="true"
+        [showWeek]="true">
+      </p-datepicker>
+    </div>
+  </div>
+</div>
