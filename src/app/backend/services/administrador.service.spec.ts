@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NavbarService } from './navbar.service';
+import { AdministradorService } from './administrador.service';
 
-describe('NavbarService', () => {
-  let service: NavbarService;
+describe('AdministradorService', () => {
+  let service: AdministradorService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NavbarService);
+    service = TestBed.inject(AdministradorService);
   });
 
   it('should be created', () => {
