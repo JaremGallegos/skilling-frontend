@@ -7,10 +7,11 @@ import { provideFlatpickrDefaults } from 'angularx-flatpickr';
 import { DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { importProvidersFrom } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
   providers: [
+    provideHttpClient(),
     provideProtractorTestingSupport(),
     provideRouter(routes),
     importProvidersFrom(HttpClientModule),

@@ -23,7 +23,7 @@ export const routes: Routes = [
   { path: 'login', component: SignInComponent, title: 'Login'},
   { path: 'register', component: RegisterComponent, title: 'Registrarse'},
   { path: 'admin', component: AdminComponent, title: 'Admin', canActivate: [AuthGuardService] },
-  { path: '', component: FeaturesComponent, title: 'Dashboard', children: [
+  { path: '', component: FeaturesComponent, title: 'Dashboard', canActivate: [AuthGuardService], children: [
     { path: '', component: DashboardComponent, title: 'Inicio' },
     { path: 'profesor', component: ProfesorComponent, title: 'Profesor' },
     { path: 'estudiante', component: EstudianteComponent, title: 'Estudiante' },
