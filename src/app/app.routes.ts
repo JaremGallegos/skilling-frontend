@@ -17,26 +17,27 @@ import { AnunciosComponent } from './core/pages/anuncios/anuncios.component';
 import { RegisterComponent } from './core/register/register.component';
 import { PerfilComponent } from './core/pages/perfil/perfil.component';
 import { ConfiguracionComponent } from './core/pages/configuracion/configuracion.component';
+import { AuthGuardService } from './backend/services/auth-guard.service';
 
 export const routes: Routes = [
   { path: 'login', component: SignInComponent, title: 'Login'},
-  { path: 'registrar', component: RegisterComponent, title: "Registrarse"},
-  { path: 'admin', component: AdminComponent, title: 'Admin' },
+  { path: 'register', component: RegisterComponent, title: 'Registrarse'},
+  { path: 'admin', component: AdminComponent, title: 'Admin', canActivate: [AuthGuardService] },
   { path: '', component: FeaturesComponent, title: 'Dashboard', children: [
     { path: '', component: DashboardComponent, title: 'Inicio' },
     { path: 'profesor', component: ProfesorComponent, title: 'Profesor' },
     { path: 'estudiante', component: EstudianteComponent, title: 'Estudiante' },
-    { path: 'asesores', component: AsesorComponent, title: "Pagina" },
-    { path: 'clases', component: ClasesComponent, title: "Clase" },
-    { path: 'cursos', component: CursosComponent, title: "Cursos" },
-    { path: 'examenes', component: ExamenesComponent, title: "Examenes" },
-    { path: 'tareas', component: TareasComponent, title: "Tareas" },
-    { path: 'asistencia', component: AsistenciaComponent, title: "Asistencia" },
-    { path: 'eventos', component: EventosComponent, title: "Eventos" },
-    { path: 'mensajeria', component: MensajeriaComponent, title: "Mensajeria" },
-    { path: 'anuncios', component: AnunciosComponent, title: "Anuncios" },
-    { path: 'perfil', component: PerfilComponent, title: "Perfil"},
-    { path: 'configuracion', component: ConfiguracionComponent, title: "Configuracion"}
+    { path: 'asesores', component: AsesorComponent, title: 'Pagina' },
+    { path: 'clases', component: ClasesComponent, title: 'Clase' },
+    { path: 'cursos', component: CursosComponent, title: 'Cursos' },
+    { path: 'examenes', component: ExamenesComponent, title: 'Examenes' },
+    { path: 'tareas', component: TareasComponent, title: 'Tareas' },
+    { path: 'asistencia', component: AsistenciaComponent, title: 'Asistencia' },
+    { path: 'eventos', component: EventosComponent, title: 'Eventos' },
+    { path: 'mensajeria', component: MensajeriaComponent, title: 'Mensajeria' },
+    { path: 'anuncios', component: AnunciosComponent, title: 'Anuncios' },
+    { path: 'perfil', component: PerfilComponent, title: 'Perfil' },
+    { path: 'configuracion', component: ConfiguracionComponent, title: 'Configuracion' }
   ]},
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];

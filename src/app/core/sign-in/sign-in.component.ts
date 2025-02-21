@@ -6,7 +6,8 @@ import { LoginRequestDTO } from '../../backend/models/login.request';
 import { LoginService } from '../../backend/services/login.service';
 import { NgIf } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthGuardService } from '../../backend/services/auth-guard.service';
 
 
 @Component({
@@ -22,13 +23,17 @@ import { RouterModule } from '@angular/router';
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',
-  providers: [LoginService, HttpClient]
+  providers: [LoginService, AuthGuardService, HttpClient]
 })
 export class SignInComponent implements OnInit {
   loginForm!: FormGroup;
   errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private authService: LoginService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: LoginService,
+    private router: Router
+  ) {}
 
   // Al momento de iniciar el formulario se carga y limpia los inputs
   ngOnInit(): void {
@@ -49,6 +54,7 @@ export class SignInComponent implements OnInit {
     this.authService.login(loginRequest).subscribe({
       next: (response) => {
         console.log('Login exitoso:', response.message);
+        this.router.navigate(['/']);
       },
       error: (err) => {
         console.error('Error en el login:', err);

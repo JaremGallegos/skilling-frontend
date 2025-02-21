@@ -1,1 +1,65 @@
-<p>register works!</p>
+<div class="min-h-screen flex flex-col lg:flex-row">
+  <!-- Lateral Izquierdo: Formulario de Registro -->
+  <div class="flex flex-col justify-center items-center lg:w-1/2 bg-white">
+    <div class="w-full max-w-md p-8">
+      <h2 class="mb-6 text-center text-3xl font-extrabold text-gray-900">Registrarse</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="space-y-6">
+        <!-- Campo Correo -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Correo</label>
+          <input id="email" type="email" formControlName="email" placeholder="jaremgallegosp@gmail.com"
+            class="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+          <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="mt-1 text-xs text-red-500">
+            Debe ingresar un correo válido.
+          </div>
+        </div>
+
+        <!-- Campo Contraseña -->
+        <div>
+          <label for="clave" class="block text-sm font-medium text-gray-700">Contraseña</label>
+          <input id="clave" type="password" formControlName="clave" placeholder="Ingrese su contraseña"
+            class="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+          <div *ngIf="registerForm.get('clave')?.invalid && registerForm.get('clave')?.touched" class="mt-1 text-xs text-red-500">
+            La contraseña es requerida.
+          </div>
+        </div>
+
+        <!-- Campo Rol (Combo Box) -->
+        <div>
+          <label for="rolId" class="block text-sm font-medium text-gray-700">Rol</label>
+          <select id="rolId" formControlName="rolId"
+            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <option value="">Seleccione un rol</option>
+            <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.tipo }}</option>
+          </select>
+          <div *ngIf="registerForm.get('rolId')?.invalid && registerForm.get('rolId')?.touched" class="mt-1 text-xs text-red-500">
+            Por favor seleccione un rol.
+          </div>
+        </div>
+
+        <!-- Botón de Registro -->
+        <button type="submit" [disabled]="registerForm.invalid"
+          class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Registrarse
+        </button>
+
+        <div class="mt-6 text-center">
+          <p class="text-sm text-gray-600">
+            ¿Ya tienes una cuenta?
+            <a href="/login" class="font-medium text-indigo-600 hover:text-indigo-500">
+              Iniciar Sesión
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Lateral Derecho: Mensaje de Bienvenida -->
+  <div class="hidden lg:flex lg:w-1/2 bg-cover bg-center" style="background-image: url('ruta-de-tu-imagen.jpg');">
+    <div class="p-8 bg-black bg-opacity-40 text-white flex flex-col items-center justify-center w-full">
+      <h1 class="text-4xl font-bold mb-4">Bienvenido</h1>
+      <p class="text-lg">Únete a nuestra comunidad y disfruta de nuestros servicios.</p>
+    </div>
+  </div>
+</div>

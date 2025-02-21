@@ -17,7 +17,7 @@ import { ImageModule } from 'primeng/image'
   ],
   template: `<router-outlet></router-outlet>`,
   templateUrl: './features.component.html',
-  styleUrl: './features.component.scss'
+  styleUrl: './features.component.scss',
 })
 export class FeaturesComponent {
 
