@@ -15,6 +15,6 @@ export interface ProfesorResponseDTO {
   fechaCreacion: string;
   fechaNacimiento: string;
   usuarioId: UsuarioResponseDTO;
-  lecciones: LeccionResponseDTO[];
-  clases: ClaseResponseDTO[];
+  lecciones?: LeccionResponseDTO[];
+  clases?: ClaseResponseDTO[];
 }

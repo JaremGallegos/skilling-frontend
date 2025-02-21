@@ -1,8 +1,142 @@
-<div class="p-4 flex gap-4 flex-col xl:flex-row">
-  <!-- Izquierda -->
-  <div class="w-full xl:w-2/3">
-    <div class="h-full bg-white p-4 rounded-md">
-      <h1 class="text-xl font-smibold"></h1>
+<!-- Contenedor principal -->
+<div class="container mx-auto p-4">
+  <!-- Controles de la tabla y botón para crear nuevo registro -->
+  <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+    <div class="flex items-center mb-2 md:mb-0">
+      <button pButton type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" class="mr-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded p-2"></button>
+      <button pButton type="button" icon="pi pi-refresh" (click)="reset()" class="mr-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded p-2"></button>
+      <button pButton type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded p-2"></button>
     </div>
+    <div>
+      <button pButton type="button" icon="pi pi-plus" label="Nuevo Profesor" (click)="openNew()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"></button>
+    </div>
+  </div>
+
+  <!-- Tabla de profesores -->
+  <p-table
+    [value]="profesores"
+    [paginator]="true"
+    [rows]="10"
+    [first]="first"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+    (onPage)="pageChange($event)"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    stripedRows>
+    <ng-template pTemplate="header">
+      <tr class="bg-gray-200">
+        <th class="p-2 text-left">Usuario</th>
+        <th class="p-2 text-left">Nombre</th>
+        <th class="p-2 text-left">Apellido</th>
+        <th class="p-2 text-left">Correo</th>
+        <th class="p-2 text-left">Teléfono</th>
+        <th class="p-2 text-center">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-profesor>
+      <tr class="hover:bg-gray-100">
+        <td class="p-2">{{ profesor.usuario }}</td>
+        <td class="p-2">{{ profesor.nombre }}</td>
+        <td class="p-2">{{ profesor.apellido }}</td>
+        <td class="p-2">{{ profesor.correo }}</td>
+        <td class="p-2">{{ profesor.telefono }}</td>
+        <td class="p-2 text-center">
+          <button
+            pButton
+            type="button"
+            icon="pi pi-pencil"
+            (click)="editProfesor(profesor)"
+            class="mr-2 bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-2 rounded"
+          ></button>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-trash"
+            (click)="deleteProfesor(profesor)"
+            class="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- Modal para creación/edición de profesor -->
+<div *ngIf="profesorDialog" class="fixed inset-0 flex items-center justify-center z-50">
+  <div class="fixed inset-0 bg-black opacity-50"></div>
+
+  <div class="bg-white rounded shadow-lg z-10 p-6 w-full max-w-lg mx-4">
+    <h2 class="text-xl font-bold mb-4"> {{ isNewProfesor ? 'Crear Profesor' : 'Editar Profesor' }} </h2>
+    <!-- El formulario no envia nada como un metodo -->
+    <form>
+      <div class="grid grid-cols-1 gap-4">
+        <!-- Nombre de Usuario -->
+        <div>
+          <label class="block text-gray-700 mb-1">Usuario</label>
+          <input type="text" [(ngModel)]="profesor.usuario" name="usuario" class="w-full border rounded px-3 py-2"/>
+        </div>
+        <!-- Usuario como Cliente -->
+        <div>
+          <label class="block text-gray-700 mb-1">Seleccionar Usuario</label>
+          <p-dropdown [options]="usuariosOptions" [(ngModel)]="profesor.usuarioId.id" name="usuarioId" placeholder="Seleccione un usuario"></p-dropdown>
+        </div>
+        <!-- Nombre -->
+        <div>
+          <label class="block text-gray-700 mb-1">Nombre</label>
+          <input type="text" [(ngModel)]="profesor.nombre" name="nombre" class="w-full border rounded px-3 py-2"/>
+        </div>
+        <!-- Apellido -->
+        <div>
+          <label class="block text-gray-700 mb-1">Apellido</label>
+          <input type="text" [(ngModel)]="profesor.apellido" name="apellido" class="w-full border rounded px-3 py-2"/>
+        </div>
+        <!-- Correo -->
+        <div>
+          <label class="block text-gray-700 mb-1">Correo</label>
+          <input type="email" [(ngModel)]="profesor.correo" name="correo" class="w-full border rounded px-3 py-2"/>
+        </div>
+        <!-- Teléfono -->
+        <div>
+          <label class="block text-gray-700 mb-1">Teléfono</label>
+          <input type="text" [(ngModel)]="profesor.telefono" name="telefono" class="w-full border rounded px-3 py-2"/>
+        </div>
+        <!-- Dirección -->
+        <div>
+          <label class="block text-gray-700 mb-1">Dirección</label>
+          <input type="text" [(ngModel)]="profesor.direccion" name="direccion" class="w-full border rounded px-3 py-2"/>
+        </div>
+        <!-- Imagen -->
+        <div>
+          <label class="block text-gray-700 mb-1">Imagen</label>
+          <input type="file" (change)="onImageSelected($event)" hidden #fileInput>
+          <button type="button" (click)="fileInput.click()" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+            Cargar Imagen
+          </button>
+          <div *ngIf="profesor.imagen" class="mt-2">
+            <img [src]="profesor.imagen" alt="Imagen del Profesor" class="max-w-full" />
+          </div>
+        </div>
+        <!-- Sexo -->
+        <div>
+          <label class="block text-gray-700 mb-1">Sexo</label>
+          <p-dropdown [options]="sexOptions" [(ngModel)]="profesor.sexo" name="sexo" placeholder="Seleccione sexo"></p-dropdown>
+        </div>
+        <!-- Fecha de Nacimiento -->
+        <div>
+          <label class="block text-gray-700 mb-1">Fecha de Nacimiento</label>
+          <input type="date" [(ngModel)]="profesor.fechaNacimiento" name="fechaNacimiento" class="w-full border rounded px-3 py-2"/>
+        </div>
+      </div>
+      <!-- Botones de guardado -->
+      <div class="mt-6 flex justify-end gap-2">
+        <button type="button" (click)="hideDialog()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+          Cancelar
+        </button>
+        <button type="button" (click)="saveProfesor()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Guardar
+        </button>
+      </div>
+    </form>
   </div>
 </div>

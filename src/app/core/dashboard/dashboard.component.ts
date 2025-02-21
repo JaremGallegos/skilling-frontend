@@ -1,16 +1,24 @@
 import { Component } from '@angular/core';
-import { CoursesCardComponent } from '../components/courses-card/courses-card.component';
 import { DatePickerModule } from 'primeng/datepicker';
-import { ResourcesCardComponent } from '../components/resources-card/resources-card.component';
 import { FormsModule } from '@angular/forms';
+import { UserCardComponent } from '../components/user-card/user-card.component';
+import { CountChartComponent } from '../components/count-chart/count-chart.component';
+import { AttendanceChartComponent } from '../components/attendance-chart/attendance-chart.component';
+import { FinanceChartComponent } from '../components/finance-chart/finance-chart.component';
+import { EventCalendarComponentComponent } from '../components/event-calendar-component/event-calendar-component.component';
+import { AnnouncementsComponent } from '../components/announcements/announcements.component';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
-    CoursesCardComponent,
-    ResourcesCardComponent,
     DatePickerModule,
-    FormsModule
+    FormsModule,
+    UserCardComponent,
+    CountChartComponent,
+    AttendanceChartComponent,
+    FinanceChartComponent,
+    EventCalendarComponentComponent,
+    AnnouncementsComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'

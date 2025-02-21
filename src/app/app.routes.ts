@@ -14,23 +14,29 @@ import { AsistenciaComponent } from './core/pages/asistencia/asistencia.componen
 import { EventosComponent } from './core/pages/eventos/eventos.component';
 import { MensajeriaComponent } from './core/pages/mensajeria/mensajeria.component';
 import { AnunciosComponent } from './core/pages/anuncios/anuncios.component';
+import { RegisterComponent } from './core/register/register.component';
+import { PerfilComponent } from './core/pages/perfil/perfil.component';
+import { ConfiguracionComponent } from './core/pages/configuracion/configuracion.component';
 
 export const routes: Routes = [
   { path: 'login', component: SignInComponent, title: 'Login'},
+  { path: 'registrar', component: RegisterComponent, title: "Registrarse"},
   { path: 'admin', component: AdminComponent, title: 'Admin' },
   { path: '', component: FeaturesComponent, title: 'Dashboard', children: [
-    { path: 'dashboard', component: DashboardComponent, title: 'Admin Page' },
-    { path: 'estudiante', component: EstudianteComponent, title: 'Estudiante Page' },
-    { path: 'profesor', component: ProfesorComponent, title: 'Profesor Page' },
-    { path: 'asesores', component: AsesorComponent, title: "Asesores Page" },
-    { path: 'clases', component: ClasesComponent, title: "Clase Pagina" },
-    { path: 'cursos', component: CursosComponent, title: "Cursos Pagina" },
-    { path: 'examenes', component: ExamenesComponent, title: "Examenes Pagina" },
-    { path: 'tareas', component: TareasComponent, title: "Tareas Pagina" },
-    { path: 'asistencia', component: AsistenciaComponent, title: "Asistencia Pagina" },
-    { path: 'eventos', component: EventosComponent, title: "Eventos Pagina" },
-    { path: 'mensajeria', component: MensajeriaComponent, title: "Mensajeria Pagina" },
-    { path: 'anuncios', component: AnunciosComponent, title: "Anuncios Pagina" }
+    { path: '', component: DashboardComponent, title: 'Inicio' },
+    { path: 'profesor', component: ProfesorComponent, title: 'Profesor' },
+    { path: 'estudiante', component: EstudianteComponent, title: 'Estudiante' },
+    { path: 'asesores', component: AsesorComponent, title: "Pagina" },
+    { path: 'clases', component: ClasesComponent, title: "Clase" },
+    { path: 'cursos', component: CursosComponent, title: "Cursos" },
+    { path: 'examenes', component: ExamenesComponent, title: "Examenes" },
+    { path: 'tareas', component: TareasComponent, title: "Tareas" },
+    { path: 'asistencia', component: AsistenciaComponent, title: "Asistencia" },
+    { path: 'eventos', component: EventosComponent, title: "Eventos" },
+    { path: 'mensajeria', component: MensajeriaComponent, title: "Mensajeria" },
+    { path: 'anuncios', component: AnunciosComponent, title: "Anuncios" },
+    { path: 'perfil', component: PerfilComponent, title: "Perfil"},
+    { path: 'configuracion', component: ConfiguracionComponent, title: "Configuracion"}
   ]},
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];

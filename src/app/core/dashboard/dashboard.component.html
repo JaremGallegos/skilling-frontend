@@ -6,23 +6,35 @@
   </div>
 
   <!-- Zona de Tarjetas -->
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 w-full">
-    <!-- Carta de Cursos (1 columna) -->
-    <div class="md:col-span-1">
-      <app-courses-card></app-courses-card>
+  <div class="p-4 flex gap-4 flex-col md:flex-row">
+    <!-- Izquierda -->
+    <div class="w-full lg:w-2/3 flex flex-col gap-8">
+      <div class="flex gap-4 justify-between flex-wrap">
+        <app-user-card [subTitle]="'Estudiantes'" [colorOdd]="'var(--skillingYellow)'" [colorEven]="'var(--skillingSky)'" [data]="'999'" [isOdd]="true" [date]="'Unknown'" />
+        <app-user-card [subTitle]="'Profesores'" [colorOdd]="'var(--skillingYellow)'" [colorEven]="'var(--skillingSky)'" [data]="'999'" [isOdd]="false" [date]="'Unknown'" />
+        <app-user-card [subTitle]="'Cursos'" [colorOdd]="'var(--skillingYellow)'" [colorEven]="'var(--skillingSky)'" [data]="'999'" [isOdd]="true" [date]="'Unknown'"/>
+        <app-user-card [subTitle]="'Asesores'" [colorOdd]="'var(--skillingYellow)'" [colorEven]="'var(--skillingSky)'" [data]="'999'" [isOdd]="false" [date]="'Unknown'" />
+      </div>
+      <!-- Middle Charts -->
+      <div class="flex gap-4 flex-col lg:flex-row">
+        <!-- Count Chart -->
+        <div class="w-full lg:w-1/3 h-[450px]">
+          <app-count-chart [nombre]="'Estudiantes'" />
+        </div>
+        <!-- Asistencia Chart -->
+        <div class="w-full lg:w-2/3 h-[450px]">
+          <app-attendance-chart [nombre]="'Asistencias'"/>
+        </div>
+      </div>
+      <!-- Botton Charts-->
+      <div class="w-full h-[600px]">
+        <app-finance-chart [nombre]="'Finanzas'" />
+      </div>
     </div>
-    <!-- Carta de Recursos (2 columnas) -->
-    <div class="md:col-span-2">
-      <app-resources-card></app-resources-card>
-    </div>
-    <!-- Calendario / Datepicker (1 columna) -->
-    <div class="md:col-span-1">
-      <p-datepicker
-        class="w-full"
-        [(ngModel)]="date"
-        [inline]="true"
-        [showWeek]="true">
-      </p-datepicker>
+    <!-- Derecha -->
+    <div class="w-full lg:w-1/3 flex flex-col gap-8">
+      <app-event-calendar-component />
+      <app-announcements />
     </div>
   </div>
 </div>

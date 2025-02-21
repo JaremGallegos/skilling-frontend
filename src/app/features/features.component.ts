@@ -13,7 +13,7 @@ import { ImageModule } from 'primeng/image'
     ButtonModule,
     MenuComponent,
     NavbarComponent,
-    ImageModule
+    ImageModule,
   ],
   template: `<router-outlet></router-outlet>`,
   templateUrl: './features.component.html',

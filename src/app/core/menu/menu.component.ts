@@ -22,7 +22,7 @@ export class MenuComponent implements OnInit {
       {
         title: "MENU",
         items: [
-          { label: "Inicio", icon: PrimeIcons.HOME, url: "/dashboard", allowRoles: ["admin", "profesor", "estudiante"] },
+          { label: "Inicio", icon: PrimeIcons.HOME, url: " ", allowRoles: ["admin", "profesor", "estudiante"] },
           { label: "Profesores", icon: PrimeIcons.BRIEFCASE, url: "/profesor", allowRoles: ["admin", "profesor"] },
           { label: "Estudiantes", icon: PrimeIcons.BOOK, url: "/estudiante", allowRoles: ["admin", "profesor"] },
           { label: "Asesores", icon: PrimeIcons.GRADUATION_CAP, url: "/asesores", allowRoles: ["admin"] },
@@ -41,7 +41,7 @@ export class MenuComponent implements OnInit {
         items: [
           { label: "Perfíl", icon: PrimeIcons.USER, url: "/perfil", allowRoles: ["admin", "profesor", "estudiante"] },
           { label: "Configuración", icon: PrimeIcons.SLIDERS_H, url: "/configuracion", allowRoles: ["admin", "profesor", "estudiante"] },
-          { label: "Salir", icon: PrimeIcons.TIMES, url: "/salir", allowRoles:["admin", "profesor", "estudiante"] },
+          { label: "Salir", icon: PrimeIcons.TIMES, url: "/login", allowRoles:["admin", "profesor", "estudiante"] },
         ],
       },
     ];
