@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { EventoResponseDTO } from '../models/evento.response';
 import { Observable } from 'rxjs';
 import { EventoRequestDTO } from '../models/evento.request';
+import { NotificacionRequestDTO } from '../models/notificacion.request';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,9 @@ export class EventoService {
 
   deleteEvento(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  enviarNotificacion(notification: NotificacionRequestDTO): Observable<any> {
+    return this.http.post(`${this.baseUrl}/enviar`, notification, { responseType: 'text' });
   }
 }

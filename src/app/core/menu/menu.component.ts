@@ -32,8 +32,11 @@ export class MenuComponent implements OnInit {
           //{ label: "Tareas", icon: PrimeIcons.PAPERCLIP, url: "/tareas", allowRoles: ["admin", "profesor", "estudiante"] },
           //{ label: "Asistencia", icon: PrimeIcons.CHECK_CIRCLE, url: "/asistencia", allowRoles: ["admin", "profesor", "estudiante"] },
           //{ label: "Eventos", icon: PrimeIcons.CALENDAR_CLOCK, url: "/eventos", allowRoles: ["admin", "profesor", "estudiante"] },
-          { label: "Mensajería", icon: PrimeIcons.SEND, url: "/mensajeria", allowRoles: ["admin", "profesor", "estudiante"] },
           //{ label: "Anuncios", icon: PrimeIcons.MEGAPHONE, url: "/anuncios", allowRoles: ["admin", "profesor", "estudiante"] },
+          { label: "Libro", icon: PrimeIcons.BOOK, url: "libro", allowRoles: ["admin", "profesor", "estudiante"] },
+          { label: "Simulacion", icon: PrimeIcons.ANDROID, url: "simulacion", allowRoles: ["admin", "profesor", "estudiante"] },
+          { label: "Mensajería", icon: PrimeIcons.SEND, url: "mensajeria", allowRoles: ["admin", "profesor", "estudiante"] },
+
         ]
       },
       {

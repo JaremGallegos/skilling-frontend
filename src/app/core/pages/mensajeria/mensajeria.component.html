@@ -1,1 +1,62 @@
-<p>mensajeria works!</p>
+<div class="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
+  <h2 class="text-2xl font-bold mb-4 text-center">Enviar Notificación</h2>
+  <form [formGroup]="notificationForm" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label for="email" class="block text-gray-700 font-medium mb-1">Email</label>
+      <input
+        id="email"
+        type="email"
+        pInputText
+        formControlName="email"
+        placeholder="Ingrese su email"
+        class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <div *ngIf="submitted && notificationForm.get('email')?.invalid" class="text-red-500 text-sm mt-1">
+        <small>El email es obligatorio y debe ser válido.</small>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="subject" class="block text-gray-700 font-medium mb-1">Asunto</label>
+      <input
+        id="subject"
+        type="text"
+        pInputText
+        formControlName="subject"
+        placeholder="Ingrese el asunto"
+        class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <div *ngIf="submitted && notificationForm.get('subject')?.invalid" class="text-red-500 text-sm mt-1">
+        <small>El asunto es obligatorio.</small>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="body" class="block text-gray-700 font-medium mb-1">Mensaje</label>
+      <textarea
+        id="body"
+        rows="5"
+        pInputTextarea
+        formControlName="body"
+        placeholder="Ingrese el mensaje"
+        class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      ></textarea>
+      <div *ngIf="submitted && notificationForm.get('body')?.invalid" class="text-red-500 text-sm mt-1">
+        <small>El mensaje es obligatorio.</small>
+      </div>
+    </div>
+
+    <div class="flex justify-center">
+      <button
+        pButton
+        type="submit"
+        label="Enviar Notificación"
+        class="p-button p-component p-button-primary"
+      ></button>
+    </div>
+  </form>
+
+  <div *ngIf="message" class="mt-4 text-center text-green-600">
+    <p>{{ message }}</p>
+  </div>
+</div>

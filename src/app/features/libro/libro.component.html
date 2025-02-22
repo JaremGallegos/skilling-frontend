@@ -1,0 +1,76 @@
+<div class="p-4">
+  <h1 class="text-3xl font-bold mb-4">Gestión de Libros</h1>
+  <p-confirmDialog></p-confirmDialog>
+  <!-- Botones para agregar nuevo libro y cargar CSV -->
+  <div class="mb-4 flex flex-col md:flex-row justify-between items-center">
+    <button pButton label="Nuevo Libro" icon="pi pi-plus" class="p-button-success mb-2 md:mb-0" (click)="openNew()"></button>
+    <div class="flex items-center">
+      <input type="file" (change)="onCSVFileChange($event)" accept=".csv" class="mr-2" />
+      <button pButton label="Cargar CSV" icon="pi pi-upload" (click)="uploadCSV()" class="p-button-info"></button>
+    </div>
+  </div>
+
+  <!-- Tabla de libros -->
+  <p-table [value]="libros" class="p-datatable-sm" [paginator]="true" [rows]="10" [responsiveLayout]="'scroll'">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>ISBN</th>
+        <th>Fecha Publicación</th>
+        <th>Resumen</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-libro>
+      <tr>
+        <td>{{ libro.titulo }}</td>
+        <td>{{ libro.autor }}</td>
+        <td>{{ libro.isbn }}</td>
+        <td>{{ libro.fechaPublicacion | date:'short' }}</td>
+        <td>{{ libro.resumen }}</td>
+        <td>
+          <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" (click)="editLibro(libro)"></button>
+          <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteLibro(libro)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Diálogo para crear/editar libro -->
+  <p-dialog header="{{ isEdit ? 'Editar Libro' : 'Nuevo Libro' }}" [(visible)]="displayDialog" [modal]="true" [responsive]="true" styleClass="w-11/12 md:w-1/2">
+    <form [formGroup]="libroForm" (ngSubmit)="saveLibro()">
+      <div class="p-fluid">
+        <div class="mb-4">
+          <label for="titulo" class="block font-medium mb-1">Título</label>
+          <input id="titulo" type="text" pInputText formControlName="titulo" class="w-full p-2 border border-gray-300 rounded" />
+          <div *ngIf="libroForm.get('titulo')?.invalid && libroForm.get('titulo')?.touched" class="text-red-500 text-sm">El título es obligatorio</div>
+        </div>
+        <div class="mb-4">
+          <label for="autor" class="block font-medium mb-1">Autor</label>
+          <input id="autor" type="text" pInputText formControlName="autor" class="w-full p-2 border border-gray-300 rounded" />
+          <div *ngIf="libroForm.get('autor')?.invalid && libroForm.get('autor')?.touched" class="text-red-500 text-sm">El autor es obligatorio</div>
+        </div>
+        <div class="mb-4">
+          <label for="isbn" class="block font-medium mb-1">ISBN</label>
+          <input id="isbn" type="text" pInputText formControlName="isbn" class="w-full p-2 border border-gray-300 rounded" />
+          <div *ngIf="libroForm.get('isbn')?.invalid && libroForm.get('isbn')?.touched" class="text-red-500 text-sm">El ISBN es obligatorio</div>
+        </div>
+        <div class="mb-4">
+          <label for="fechaPublicacion" class="block font-medium mb-1">Fecha Publicación</label>
+          <input id="fechaPublicacion" type="datetime-local" pInputText formControlName="fechaPublicacion" class="w-full p-2 border border-gray-300 rounded" />
+          <div *ngIf="libroForm.get('fechaPublicacion')?.invalid && libroForm.get('fechaPublicacion')?.touched" class="text-red-500 text-sm">La fecha es obligatoria</div>
+        </div>
+        <div class="mb-4">
+          <label for="resumen" class="block font-medium mb-1">Resumen</label>
+          <textarea id="resumen" rows="3" pTextarea formControlName="resumen" class="w-full p-2 border border-gray-300 rounded"></textarea>
+          <div *ngIf="libroForm.get('resumen')?.invalid && libroForm.get('resumen')?.touched" class="text-red-500 text-sm">El resumen es obligatorio</div>
+        </div>
+      </div>
+      <div class="flex justify-end mt-4">
+        <button pButton type="button" label="Cancelar" class="p-button-secondary mr-2" (click)="displayDialog = false"></button>
+        <button pButton type="submit" label="Guardar" class="p-button-primary"></button>
+      </div>
+    </form>
+  </p-dialog>
+</div>

@@ -1,0 +1,92 @@
+<div class="p-4">
+  <h1 class="text-3xl font-bold mb-4">Gestión de Simulaciones</h1>
+
+  <!-- Botones para agregar nueva simulación, cargar JSONL y descargar CSV -->
+  <div class="mb-4 flex flex-col md:flex-row justify-between items-center">
+    <button pButton label="Nueva Simulación" icon="pi pi-plus" class="p-button-success mb-2 md:mb-0" (click)="openNew()"></button>
+    <div class="flex items-center space-x-2">
+      <input type="file" (change)="onJsonlFileChange($event)" accept=".jsonl" class="mr-2" />
+      <button pButton label="Cargar JSONL" icon="pi pi-upload" (click)="uploadJsonl()" class="p-button-info"></button>
+      <button pButton label="Descargar CSV" icon="pi pi-download" (click)="downloadCsv()" class="p-button-warning"></button>
+    </div>
+  </div>
+
+  <!-- Tabla de simulaciones -->
+  <p-table [value]="simulaciones" class="p-datatable-sm" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Estado</th>
+        <th>Tiempo Inicio</th>
+        <th>Tiempo Fin</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-simulacion>
+      <tr>
+        <td>{{ simulacion.id }}</td>
+        <td>{{ simulacion.nombre }}</td>
+        <td>{{ simulacion.descripcion }}</td>
+        <td>{{ simulacion.estado }}</td>
+        <td>{{ simulacion.tiempoInicio | date:'short' }}</td>
+        <td>{{ simulacion.tiempoFin | date:'short' }}</td>
+        <td>
+          <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" (click)="editSimulacion(simulacion)"></button>
+          <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteSimulacion(simulacion)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Diálogo para crear/editar simulación -->
+  <p-dialog header="{{ isEdit ? 'Editar Simulación' : 'Nueva Simulación' }}" [(visible)]="displayDialog" [modal]="true" [responsive]="true" styleClass="w-11/12 md:w-1/2">
+    <form [formGroup]="simulacionForm" (ngSubmit)="saveSimulacion()">
+      <div class="p-fluid">
+        <div class="mb-4">
+          <label for="nombre" class="block font-medium mb-1">Nombre</label>
+          <input id="nombre" type="text" pInputText formControlName="nombre" class="w-full p-2 border border-gray-300 rounded" />
+          <div *ngIf="simulacionForm.get('nombre')?.invalid && simulacionForm.get('nombre')?.touched" class="text-red-500 text-sm">
+            El nombre es obligatorio
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="descripcion" class="block font-medium mb-1">Descripción</label>
+          <textarea id="descripcion" rows="3" pTextarea formControlName="descripcion" class="w-full p-2 border border-gray-300 rounded"></textarea>
+          <div *ngIf="simulacionForm.get('descripcion')?.invalid && simulacionForm.get('descripcion')?.touched" class="text-red-500 text-sm">
+            La descripción es obligatoria
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="estado" class="block font-medium mb-1">Estado</label>
+          <input id="estado" type="text" pInputText formControlName="estado" class="w-full p-2 border border-gray-300 rounded" />
+          <div *ngIf="simulacionForm.get('estado')?.invalid && simulacionForm.get('estado')?.touched" class="text-red-500 text-sm">
+            El estado es obligatorio
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="tiempoInicio" class="block font-medium mb-1">Tiempo Inicio</label>
+          <input id="tiempoInicio" type="datetime-local" pInputText formControlName="tiempoInicio" class="w-full p-2 border border-gray-300 rounded" />
+          <div *ngIf="simulacionForm.get('tiempoInicio')?.invalid && simulacionForm.get('tiempoInicio')?.touched" class="text-red-500 text-sm">
+            El tiempo de inicio es obligatorio
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="tiempoFin" class="block font-medium mb-1">Tiempo Fin</label>
+          <input id="tiempoFin" type="datetime-local" pInputText formControlName="tiempoFin" class="w-full p-2 border border-gray-300 rounded" />
+          <div *ngIf="simulacionForm.get('tiempoFin')?.invalid && simulacionForm.get('tiempoFin')?.touched" class="text-red-500 text-sm">
+            El tiempo de fin es obligatorio
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end mt-4">
+        <button pButton type="button" label="Cancelar" class="p-button-secondary mr-2" (click)="displayDialog = false"></button>
+        <button pButton type="submit" label="Guardar" class="p-button-primary"></button>
+      </div>
+    </form>
+  </p-dialog>
+
+  <!-- Diálogo de confirmación -->
+  <p-confirmDialog></p-confirmDialog>
+</div>

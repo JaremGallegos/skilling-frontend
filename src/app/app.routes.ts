@@ -18,12 +18,15 @@ import { RegisterComponent } from './core/register/register.component';
 import { PerfilComponent } from './core/pages/perfil/perfil.component';
 import { ConfiguracionComponent } from './core/pages/configuracion/configuracion.component';
 import { AuthGuardService } from './backend/services/auth-guard.service';
+import { SimulacionComponent } from './features/simulacion/simulacion.component';
+import { LibroComponent } from './features/libro/libro.component';
 
 export const routes: Routes = [
   { path: 'login', component: SignInComponent, title: 'Login'},
   { path: 'register', component: RegisterComponent, title: 'Registrarse'},
   { path: 'admin', component: AdminComponent, title: 'Admin', canActivate: [AuthGuardService] },
-  { path: '', component: FeaturesComponent, title: 'Dashboard', canActivate: [AuthGuardService], children: [
+  // Revisar porque no sirve el AuthGuard con JWT
+  { path: '', component: FeaturesComponent, title: 'Dashboard', children: [
     { path: '', component: DashboardComponent, title: 'Inicio' },
     { path: 'profesor', component: ProfesorComponent, title: 'Profesor' },
     { path: 'estudiante', component: EstudianteComponent, title: 'Estudiante' },
@@ -37,7 +40,9 @@ export const routes: Routes = [
     { path: 'mensajeria', component: MensajeriaComponent, title: 'Mensajeria' },
     { path: 'anuncios', component: AnunciosComponent, title: 'Anuncios' },
     { path: 'perfil', component: PerfilComponent, title: 'Perfil' },
-    { path: 'configuracion', component: ConfiguracionComponent, title: 'Configuracion' }
+    { path: 'configuracion', component: ConfiguracionComponent, title: 'Configuracion' },
+    { path: 'simulacion', component: SimulacionComponent, title: 'Simulacion' },
+    { path: 'libro', component: LibroComponent, title: 'Libros' },
   ]},
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];
